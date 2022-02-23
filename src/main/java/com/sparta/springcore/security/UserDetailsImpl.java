@@ -15,16 +15,13 @@ public class UserDetailsImpl implements UserDetails {
         this.user = user;
     }
 
-    @Override
-    public String getPassword() {
-        return user.getPassword();
-    }
+    public User getUser() { return user; }
 
     @Override
-    public String getUsername() {
-        return user.getUserId();
-    }
+    public String getPassword() { return user.getPassword(); }
 
+    @Override
+    public String getUsername() { return user.getUserId(); }
 
     @Override
     public boolean isAccountNonExpired() {

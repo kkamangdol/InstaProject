@@ -19,8 +19,10 @@ public class SignupRequestDto {
     private String password;
 
     @NotBlank(message = "확인 비밀번호를 입력해주세요")
-    private String checkpw;
+    private String checkPw;
 
     @NotBlank(message = "닉네임을 입력해주세요")
     private String nickname;
+
+    private String imgUrl;
 }

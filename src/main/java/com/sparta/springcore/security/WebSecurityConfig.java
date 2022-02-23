@@ -1,5 +1,6 @@
 package com.sparta.springcore.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final LoginFailHandler loginFailHandler;
 
     @Bean
     public BCryptPasswordEncoder encodePassword() {
@@ -52,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 // 로그인 처리 후 성공 시 URL
                 .defaultSuccessUrl("/")
 // 로그인 처리 후 실패 시 URL
-                .failureUrl("/api/login?error")
+                .failureHandler(loginFailHandler)
                 .permitAll()
                 .and()
 // [로그아웃 기능]
