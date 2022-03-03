@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -72,7 +74,8 @@ public class UserController {
 
         // 회원 가입 요청 처리
         @PostMapping("/api/register")
-        public ResponseEntity<Object> registerUser(@Valid SignupRequestDto requestDto, BindingResult bindingResult) {
+        @ResponseBody
+        public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequestDto requestDto, BindingResult bindingResult) {
 
             if (bindingResult.hasErrors()) {
                 List<ErrorMessage> errorMessages = new ArrayList<>();
@@ -86,3 +89,4 @@ public class UserController {
             return ResponseEntity.ok().body("");
     }
 }
+

@@ -12,6 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
 @RequiredArgsConstructor
+
+
+
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final LoginFailHandler loginFailHandler;

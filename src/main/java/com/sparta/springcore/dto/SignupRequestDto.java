@@ -1,7 +1,10 @@
 package com.sparta.springcore.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -20,6 +23,8 @@ public class SignupRequestDto {
 
     @NotBlank(message = "확인 비밀번호를 입력해주세요")
     private String checkPw;
+    @AssertTrue(message = "입력한 비밀번호와 같지 않습니다") public boolean isSamePwd() { return password.equals(checkPw); }
+    
 
     @NotBlank(message = "닉네임을 입력해주세요")
     private String nickname;

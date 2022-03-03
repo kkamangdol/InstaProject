@@ -13,11 +13,8 @@ public class Post extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postID")
+    @Column(name = "id")
     private Long id;
-
-    @Column(nullable = false)
-    private String title;
 
     @Column(nullable = false)
     private String content;
@@ -25,20 +22,23 @@ public class Post extends Timestamped {
     @Column
     private String imgUrl;
 
+    @Column
+    private Long likecount;
+
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Post(PostRequestDto requestDto, User user) {
-        this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.imgUrl = requestDto.getImgUrl();
+        this.likecount = requestDto.getLikecount();
         this.user = user;
     }
 
     public void update(PostRequestDto requestDto) {
-        this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.imgUrl = requestDto.getImgUrl();
+        this.likecount = requestDto.getLikecount();
     }
 }

@@ -16,34 +16,41 @@ public class PostController {
 
     private final PostService postService;
 
+    // 게시글 조회
     @GetMapping("/api/post")
     public List<PostResponseDto> getListOfPosts() {
         return postService.getListOfPost();
     }
 
-    @GetMapping("/api/post/:postId")
-    public PostResponseDto getPost(@PathVariable Long id) {
-        return postService.getPost(id);
+    @GetMapping("/api/post/{postId}")
+    public PostResponseDto getPost(@PathVariable Long postId) {
+        return postService.getPost(postId);
     }
-
+    // 게시글 작성
     @PostMapping("/api/post")
     public PostResponseDto writePost(@RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return postService.writePost(requestDto, userDetails.getUser());
     }
 
-    @PutMapping("/api/post/:postId")
-    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
-        return postService.updatePost(id, requestDto);
+    // 게시글 수정
+    @PutMapping("/api/post/{postId}")
+    public Long updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto) {
+        return postService.updatePost(postId, requestDto);
     }
-
-    @PutMapping("/api/post/{id}/like")
-    public Long changeLike(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return postService.changeLike(id, userDetails.getUser());
+    // 좋아요
+    @PutMapping("/api/post/{postId}/like")
+    public Long changeLike(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return postService.changeLike(postId, userDetails.getUser());
     }
+//    // 좋아요 취소
+//    @DeleteMapping("/api/post/{postId}/like")
 
-    @DeleteMapping("/api/post/:postId")
-    public Long deletePost(@PathVariable Long id) {
-        return postService.deletePost(id);
+
+
+    // 게시글 삭제
+    @DeleteMapping("/api/post/{postId}")
+    public Long deletePost(@PathVariable Long postId) {
+        return postService.deletePost(postId);
     }
 
 }

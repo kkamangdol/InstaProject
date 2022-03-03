@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class PostResponseDto {
-    private String userId;
-    private String title;
     private String content;
     private String imgUrl;
     private LocalDateTime createdAt;
@@ -19,7 +17,6 @@ public class PostResponseDto {
     private Long likeCount;
 
     public PostResponseDto(Post post, Long likeCount) {
-        this.title = post.getTitle();
         this.content = post.getContent();
         this.imgUrl = post.getImgUrl();
         this.createdAt = post.getCreatedAt();

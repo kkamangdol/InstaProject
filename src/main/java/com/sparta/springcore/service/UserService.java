@@ -35,11 +35,12 @@ public class UserService {
 // 패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
         String nickname = requestDto.getNickname();
-        String imgUrl = requestDto.getImgUrl();
+
+
 
 // 사용자 ROLE 확인
 
-        User user = new User(userId, password, nickname, imgUrl);
+        User user = new User(userId, password, nickname);
         userRepository.save(user);
 
 // 테스트 회원 "user1" 객체 추가
